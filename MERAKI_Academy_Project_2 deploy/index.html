@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anime Wiki</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="main-page-div">
+        <header id="header">
+          <div>
+            <input
+              type="text"
+              name="search-input"
+              id="search-input"
+              placeholder="Search ..."
+            />
+          </div>
+          <div><button id="filter-pop-up-button">Filter</button></div>
+        </header>
+        <div id="filter-pop-up-div">
+          <div id="filter-div-a-z">
+            <button id="filter-button-a-z">A-Z</button>
+          </div>
+          <div id="filter-div-studio">
+            <label for="filter-select-studio"> Select Studio:</label>
+            <select name="filter-select-studio" id="filter-select-studio">
+              <option value="" selected>select studio..</option>
+            </select>
+          </div>
+          <div id="filter-div-movie">
+            <button id="filter-button-movie">Movie</button>
+          </div>
+          <div id="filter-div-rating-range">
+            <label for="filter-min-rating-range">Min Rating:</label>
+            <input
+              type="range"
+              name="filter-min-rating-range"
+              id="filter-min-rating-range"
+              list="rating-values"
+              step="10"
+              value="0"
+            />
+            <datalist id="rating-values">
+              <option value="0" label="0"></option>
+              <option value="10" label=""></option>
+              <option value="20" label="2"></option>
+              <option value="30" label=""></option>
+              <option value="40" label="4"></option>
+              <option value="50" label=""></option>
+              <option value="60" label="6"></option>
+              <option value="70" label=""></option>
+              <option value="80" label="8"></option>
+              <option value="90" label=""></option>
+              <option value="100" label="10"></option>
+            </datalist>
+
+            <label for="filter-max-rating-range">Max Rating:</label>
+            <input
+              type="range"
+              name="filter-max-rating-range"
+              id="filter-max-rating-range"
+              list="rating-values"
+              step="10"
+              value="100"
+            />
+            <datalist id="rating-values">
+              <option value="0" label="0"></option>
+              <option value="10" label=""></option>
+              <option value="20" label="2"></option>
+              <option value="30" label=""></option>
+              <option value="40" label="4"></option>
+              <option value="50" label=""></option>
+              <option value="60" label="6"></option>
+              <option value="70" label=""></option>
+              <option value="80" label="8"></option>
+              <option value="90" label=""></option>
+              <option value="100" label="10"></option>
+            </datalist>
+
+            <button id="filter-button-apply-rating-range">Apply Rating</button>
+          </div>
+          <div id="filter-div-top-fav">
+            <button id="filter-button-top-fav">Top Fav</button>
+          </div>
+          <div id="filter-div-tv">
+            <button id="filter-button-tv">TV</button>
+          </div>
+        </div>
+        <div class="api-div">
+          <button class="api-first">First</button>
+          <button class="api-back">Back</button>
+          <button class="api-next">Next</button>
+          <button class="api-last">Last</button>
+        </div>
+
+        <main id="main-page"></main>
+
+        <div class="api-div">
+          <button class="api-first">First</button>
+          <button class="api-back">Back</button>
+          <button class="api-next">Next</button>
+          <button class="api-last">Last</button>
+        </div>
+      </div>
+      <div id="user-page">
+        <div id="user-div">
+          <div>
+            <img
+              src="Media/User-image-default.jpg"
+              alt="User Image"
+              id="user-image"
+            />
+          </div>
+          <div id="user-info"></div>
+          <div id="log-out-div">
+            <button id="log-out-button">Log out</button>
+          </div>
+        </div>
+        <div id="user-fav-div">
+          <label for="user-fav-ul"><b> # Favorites list >></b></label
+          ><br />
+          <ul id="user-fav-ul"></ul>
+        </div>
+      </div>
+
+      <div id="log-in-sign-up-page">
+        <section id="user-section">
+          <div id="sign-up-div">
+            <label for="sign-up-user-name">New user name: </label>
+            <input
+              type="text"
+              name="sign-up-user-name"
+              id="sign-up-user-name"
+              placeholder="enter new user name.."
+            />
+            <br />
+            <label for="sign-up-password">New password: </label>
+            <input
+              type="password"
+              name="sign-up-password"
+              id="sign-up-password"
+              placeholder="enter new password.."
+            />
+            <br />
+            <label for="sign-up-password-again">Re-enter password: </label>
+            <input
+              type="password"
+              name="sign-up-password-again"
+              id="sign-up-password-again"
+              placeholder="re-enter new password.."
+            />
+            <br />
+            <button id="sign-up-button">Sign up</button>
+          </div>
+          <div id="log-in-div">
+            <label for="log-in-user-name">User name: </label>
+            <input
+              type="text"
+              name="log-in-user-name"
+              id="log-in-user-name"
+              placeholder="your user name.."
+            />
+            <br />
+            <label for="log-in-password">Password: </label>
+            <input
+              type="password"
+              name="log-in-password"
+              id="log-in-password"
+              placeholder="your password.."
+            />
+            <br />
+            <div id="avatar-div">
+              <input
+                type="radio"
+                name="avatar-list"
+                class="avatar-list"
+                value="1"
+                id="avatar-1"
+              />
+
+              <label for="avatar-1"
+                ><img
+                  class="avatar-pic"
+                  src="Media/avatar-1.jpg"
+                  alt="avatar-1"
+                />
+              </label>
+
+              <input
+                type="radio"
+                name="avatar-list"
+                class="avatar-list"
+                value="2"
+                id="avatar-2"
+              />
+
+              <label for="avatar-2"
+                ><img
+                  class="avatar-pic"
+                  src="Media/avatar-2.jpg"
+                  alt="avatar-2"
+              /></label>
+
+              <input
+                type="radio"
+                name="avatar-list"
+                class="avatar-list"
+                value="3"
+                id="avatar-3"
+              />
+
+              <label for="avatar-3"
+                ><img
+                  class="avatar-pic"
+                  src="Media/avatar-3.jpg"
+                  alt="avatar-3"
+              /></label>
+
+              <input
+                type="radio"
+                name="avatar-list"
+                class="avatar-list"
+                value="4"
+                id="avatar-4"
+              />
+
+              <label for="avatar-4"
+                ><img
+                  class="avatar-pic"
+                  src="Media/avatar-4.jpg"
+                  alt="avatar-4"
+              /></label>
+
+              <input
+                type="radio"
+                name="avatar-list"
+                class="avatar-list"
+                value="5"
+                id="avatar-5"
+              />
+
+              <label for="avatar-5"
+                ><img
+                  class="avatar-pic"
+                  src="Media/avatar-5.jpg"
+                  alt="avatar-5"
+              /></label>
+            </div>
+            <br />
+            <button id="log-in-button">Log in</button>
+          </div>
+        </section>
+        <br />
+        <section id="rules-section">
+          <div id="log-in-rules">
+            ## Rules: <br />
+            1- user name must be unique and case-insensitive.<br />
+            2- length of user name must be greater than or equal to 6 <br />
+            3- length of the password is greater than or equal to 8 <br />
+          </div>
+          <div id="log-in-sign-up-errors"><p>## Errors:</p></div>
+        </section>
+      </div>
+
+      <div id="anime-page">
+
+      </div>
+      <div id="setting-pop-up">
+        <div class="setting-pop-up-des">
+          <label for="dark-button light-button">Dark/Light:</label>
+        </div>
+        <div>
+          <button id="dark-button">Dark theme</button>
+          <button id="light-button">Light theme</button>
+        </div>
+        <div class="setting-pop-up-des">
+          <label for="theme-0">Theme 0:</label>
+        </div>
+        <div>
+          <button id="theme-0">Theme 0</button>
+        </div>
+        <div class="setting-pop-up-des">
+          <label for="theme-1">Theme 1:</label>
+        </div>
+        <div>
+          <button id="theme-1">Theme 1</button>
+        </div>
+        <div class="setting-pop-up-des">
+          <label for="theme-2">Theme 2:</label>
+        </div>
+        <div>
+          <button id="theme-2">Theme 2</button>
+        </div>
+      </div>
+      <footer id="footer">
+        <div id="home"><button id="home-button">Home</button></div>
+        <div id="user"><button id="user-button">User</button></div>
+        <div id="setting">
+          <button id="setting-button">Setting</button>
+        </div>
+      </footer>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
